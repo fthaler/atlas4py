@@ -249,7 +249,7 @@ PYBIND11_MODULE( _atlas4py, m ) {
                   return c( block, row, col );
               } )
         .def_property_readonly( "blocks", &mesh::MultiBlockConnectivity::blocks )
-        .def( "block", py::overload_cast<idx_t>( &mesh::MultiBlockConnectivity::block, py::const_ ) );
+        .def( "block", py::overload_cast<idx_t>( &mesh::MultiBlockConnectivity::block, py::const_ ), py::return_value_policy::reference);
     py::class_<mesh::BlockConnectivity>( m, "BlockConnectivity" )
         .def( "__getitem__",
               []( mesh::BlockConnectivity const& c, std::tuple<idx_t, idx_t> const& pos ) {
